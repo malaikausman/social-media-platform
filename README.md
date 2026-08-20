@@ -1,28 +1,36 @@
-# Social Media Platform
+Social Media Platform
 
-A full-stack social media platform built with the MERN stack for learning and practicing modern web application development.
+A full-stack social media platform built with the MERN stack to practice and demonstrate modern full-stack web development.
 
-## Features
+Live Demo
+
+Frontend: https://social-media-platform-delta-ochre.vercel.app/
+
+Backend API: https://social-media-platform-backend-oxp3.onrender.com
+
+GitHub: https://github.com/malaikausman/social-media-platform
+
+⸻
+
+Features
 
 * User registration and login
-* JWT-based authentication
-* User profiles
-* Profile photo upload
-* Edit name and bio
-* Discover other users
+* JWT authentication and protected routes
+* User profiles with profile photo and bio
+* Discover and search users
 * Follow and unfollow users
 * Followers and following lists
-* Create posts
-* Like and unlike posts
-* Comment on posts
+* Create posts with images
+* Like and comment on posts
 * Notifications
-* Protected routes
 * Admin functionality
-* Responsive frontend interface
+* Responsive interface
 
-## Tech Stack
+⸻
 
-### Frontend
+Tech Stack
+
+Frontend
 
 * React
 * React Router
@@ -30,117 +38,101 @@ A full-stack social media platform built with the MERN stack for learning and pr
 * Vite
 * CSS
 
-### Backend
+Backend
 
 * Node.js
 * Express.js
 * MongoDB
 * Mongoose
-* JWT authentication
-* Multer for image uploads
+* JWT
+* Multer
 
-## Project Structure
+⸻
 
-```text
+Project Structure
+
 social-media-platform/
-│
 ├── backend/
 │   ├── config/
 │   ├── controllers/
 │   ├── middleware/
 │   ├── models/
 │   ├── routes/
-│   ├── server.js
-│   └── package.json
+│   ├── uploads/
+│   └── server.js
 │
 ├── frontend/
 │   ├── public/
 │   ├── src/
-│   ├── package.json
 │   └── vite.config.js
 │
 ├── .gitignore
 └── README.md
-```
 
-## Environment Variables
+⸻
 
-The backend uses environment variables for sensitive configuration.
+Environment Variables
 
-Create a `.env` file inside the `backend` folder:
+Create a .env file inside the backend folder:
 
-```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-```
 
-Never commit your real `.env` file or expose database credentials and secret keys publicly.
+Keep your .env file private and never commit secrets to GitHub.
 
-## Running Locally
+⸻
 
-### 1. Clone the repository
+Run Locally
 
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+1. Clone the repository
+
+git clone https://github.com/malaikausman/social-media-platform.git
 cd social-media-platform
-```
 
-### 2. Install backend dependencies
+2. Install backend dependencies
 
-```bash
 cd backend
 npm install
-```
 
-### 3. Configure backend environment variables
+Configure your backend/.env file, then start the server:
 
-Create:
-
-```text
-backend/.env
-```
-
-and add your MongoDB connection string and JWT secret.
-
-### 4. Start the backend
-
-```bash
 npm start
-```
 
-### 5. Install frontend dependencies
+3. Install frontend dependencies
 
-Open another terminal:
+Open a new terminal:
 
-```bash
 cd frontend
 npm install
-```
-
-### 6. Start the frontend
-
-```bash
 npm run dev
-```
 
-The frontend and backend can then communicate through the configured API URL.
+The frontend will run through Vite and connect to the configured backend API.
 
-## Security
+⸻
 
-Sensitive environment variables are excluded from Git using `.gitignore`.
+Deployment
 
-Do not publish:
+The project is deployed using:
 
-* MongoDB credentials
-* JWT secrets
-* Production API keys
-* Private environment configuration
+* Frontend: Vercel
+* Backend: Render
+* Database: MongoDB Atlas
 
-## Project Status
+The application is currently live and available through the links above.
 
-This project was built as a full-stack learning and practice project and is being prepared for deployment and portfolio use.
+⸻
 
-## Author
+Project Status
 
-Built as a full-stack development project using React, Node.js, Express, and MongoDB.
+Completed and deployed.
+
+This project demonstrates practical experience with React, Node.js, Express, MongoDB, REST APIs, authentication, image uploads, and deployment.
+
+⸻
+
+Author
+
+Malaika Usman
+
+Built with React • Node.js • Express.js • MongoDB

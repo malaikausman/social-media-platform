@@ -2,7 +2,6 @@ const User = require("../models/User");
 const Follow = require("../models/Follow");
 const Notification = require("../models/Notification");
 
-
 const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
@@ -35,7 +34,6 @@ const getProfile = async (req, res) => {
     });
   }
 };
-
 
 const getUsers = async (req, res) => {
   try {
@@ -93,7 +91,6 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-
 const getFollowers = async (req, res) => {
   try {
     const targetUser = await User.findById(
@@ -132,7 +129,6 @@ const getFollowers = async (req, res) => {
   }
 };
 
-
 const getFollowing = async (req, res) => {
   try {
     const targetUser = await User.findById(
@@ -170,7 +166,6 @@ const getFollowing = async (req, res) => {
     });
   }
 };
-
 
 const updateProfile = async (req, res) => {
   try {
@@ -221,7 +216,6 @@ const updateProfile = async (req, res) => {
     });
   }
 };
-
 
 const toggleFollow = async (req, res) => {
   try {
@@ -326,7 +320,6 @@ const toggleFollow = async (req, res) => {
     });
   }
 };
-
 
 const getFollowStatus = async (req, res) => {
   try {
