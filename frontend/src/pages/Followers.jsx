@@ -14,6 +14,9 @@ const Followers = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const BACKEND_URL =
+    "https://social-media-platform-backend-oxp3.onrender.com";
+
   const currentUserId = String(
     currentUser?._id ||
       currentUser?.id ||
@@ -154,6 +157,7 @@ const Followers = () => {
       <main className="followers-page">
         <div className="followers-status-card">
           <div className="followers-loader"></div>
+
           <p>Loading followers...</p>
         </div>
       </main>
@@ -279,7 +283,7 @@ const Followers = () => {
 
                     {person.profilePhoto ? (
                       <img
-                        src={`http://localhost:5000${person.profilePhoto}`}
+                        src={`${BACKEND_URL}${person.profilePhoto}`}
                         alt={person.name}
                         className="follower-avatar"
                       />

@@ -21,7 +21,8 @@ const UserProfile = () => {
 
   const [showPhotoModal, setShowPhotoModal] = useState(false);
 
-  
+  const BACKEND_URL =
+    "https://social-media-platform-backend-oxp3.onrender.com";
 
   useEffect(() => {
     const loadUser = async () => {
@@ -90,8 +91,6 @@ const UserProfile = () => {
     }
   }, [token, userId]);
 
-  
-
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
@@ -108,7 +107,6 @@ const UserProfile = () => {
     };
   }, [showPhotoModal]);
 
-  
   const handleFollowToggle = async () => {
     try {
       setFollowLoading(true);
@@ -150,19 +148,13 @@ const UserProfile = () => {
     }
   };
 
-  
-
   const handleProfilePhotoClick = () => {
     setShowPhotoModal(true);
   };
 
-  
-
   const handleClosePhotoModal = () => {
     setShowPhotoModal(false);
   };
-
-
 
   if (loading) {
     return (
@@ -175,8 +167,6 @@ const UserProfile = () => {
       </main>
     );
   }
-
-  
 
   if (error && !user) {
     return (
@@ -197,8 +187,6 @@ const UserProfile = () => {
     );
   }
 
-  
-
   if (!user) {
     return (
       <main className="user-profile-page">
@@ -216,8 +204,6 @@ const UserProfile = () => {
     );
   }
 
-  
-
   const currentUserId = String(
     currentUser?._id ||
       currentUser?.id ||
@@ -229,13 +215,9 @@ const UserProfile = () => {
   const isOwnProfile =
     currentUserId === profileUserId;
 
-  
-
   return (
     <main className="user-profile-page">
       <div className="user-profile-container">
-
-     
 
         <div className="profile-navigation">
           <Link
@@ -245,8 +227,6 @@ const UserProfile = () => {
             ← Back to Discover
           </Link>
         </div>
-
-
 
         <section className="user-profile-card">
 
@@ -262,7 +242,7 @@ const UserProfile = () => {
             >
               {user.profilePhoto ? (
                 <img
-                  src={`http://localhost:5000${user.profilePhoto}`}
+                  src={`${BACKEND_URL}${user.profilePhoto}`}
                   alt={user.name}
                   className="profile-photo"
                 />
@@ -395,7 +375,7 @@ const UserProfile = () => {
 
             {user.profilePhoto ? (
               <img
-                src={`http://localhost:5000${user.profilePhoto}`}
+                src={`${BACKEND_URL}${user.profilePhoto}`}
                 alt={`${user.name}'s enlarged profile`}
                 className="user-profile-photo-modal-image"
               />

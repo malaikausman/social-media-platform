@@ -28,7 +28,8 @@ const Profile = () => {
 
   const photoInputRef = useRef(null);
 
-  
+  const BACKEND_URL =
+    "https://social-media-platform-backend-oxp3.onrender.com";
 
   useEffect(() => {
     if (!message && !error) return;
@@ -40,8 +41,6 @@ const Profile = () => {
 
     return () => clearTimeout(timer);
   }, [message, error]);
-
-  
 
   useEffect(() => {
     const handleEscape = (event) => {
@@ -58,8 +57,6 @@ const Profile = () => {
       document.removeEventListener("keydown", handleEscape);
     };
   }, [showPhotoModal]);
-
-  
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -105,8 +102,6 @@ const Profile = () => {
       setLoading(false);
     }
   }, [token]);
-
-  
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -176,19 +171,13 @@ const Profile = () => {
     }
   };
 
-  
-
   const handleProfilePhotoClick = () => {
     setShowPhotoModal(true);
   };
 
-  
-
   const handleClosePhotoModal = () => {
     setShowPhotoModal(false);
   };
-
-  
 
   const handlePhotoUpload = async () => {
     setMessage("");
@@ -260,8 +249,6 @@ const Profile = () => {
     }
   };
 
-  
-
   if (loading) {
     return (
       <main className="profile-page">
@@ -279,8 +266,6 @@ const Profile = () => {
       </main>
     );
   }
-
-  
 
   if (!user) {
     return (
@@ -305,7 +290,6 @@ const Profile = () => {
       </main>
     );
   }
-
 
   return (
     <main className="profile-page">
@@ -336,7 +320,7 @@ const Profile = () => {
             >
               {user.profilePhoto ? (
                 <img
-                  src={`http://localhost:5000${user.profilePhoto}`}
+                  src={`${BACKEND_URL}${user.profilePhoto}`}
                   alt={`${user.name}'s profile`}
                   className="profile-avatar"
                 />
@@ -564,7 +548,7 @@ const Profile = () => {
 
             {user.profilePhoto ? (
               <img
-                src={`http://localhost:5000${user.profilePhoto}`}
+                src={`${BACKEND_URL}${user.profilePhoto}`}
                 alt={`${user.name}'s enlarged profile`}
                 className="profile-photo-modal-image"
               />

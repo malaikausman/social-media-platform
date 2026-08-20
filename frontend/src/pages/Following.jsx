@@ -13,6 +13,9 @@ const Following = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const BACKEND_URL =
+    "https://social-media-platform-backend-oxp3.onrender.com";
+
   const currentUserId = String(
     currentUser?._id ||
       currentUser?.id ||
@@ -243,7 +246,7 @@ const Following = () => {
 
                       {person.profilePhoto ? (
                         <img
-                          src={`http://localhost:5000${person.profilePhoto}`}
+                          src={`${BACKEND_URL}${person.profilePhoto}`}
                           alt={person.name}
                           className="following-avatar"
                         />

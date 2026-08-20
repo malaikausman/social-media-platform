@@ -24,11 +24,8 @@ const Posts = () => {
   const [loading, setLoading] = useState(true);
   const [creatingPost, setCreatingPost] = useState(false);
 
-  
-
-  const BACKEND_URL = "http://localhost:5000";
-
-  
+  const BACKEND_URL =
+    "https://social-media-platform-backend-oxp3.onrender.com";
 
   const showMessage = (text) => {
     setMessage(text);
@@ -37,8 +34,6 @@ const Posts = () => {
       setMessage("");
     }, 3000);
   };
-
-  
 
   useEffect(() => {
     const fetchPostsAndData = async () => {
@@ -61,7 +56,6 @@ const Posts = () => {
 
         await Promise.all(
           loadedPosts.map(async (post) => {
-            
             try {
               const commentResponse = await api.get(
                 `/comments/${post._id}`,
@@ -83,7 +77,6 @@ const Posts = () => {
               commentsData[post._id] = [];
             }
 
-            
             try {
               const likeResponse = await api.get(
                 `/likes/${post._id}`,
@@ -133,8 +126,6 @@ const Posts = () => {
       setLoading(false);
     }
   }, [token]);
-
-  
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
@@ -209,8 +200,6 @@ const Posts = () => {
     }
   };
 
-
-
   const handleEdit = (post) => {
     setEditingId(post._id);
     setEditContent(post.content || "");
@@ -219,15 +208,11 @@ const Posts = () => {
     setError("");
   };
 
-  
-
   const handleCancel = () => {
     setEditingId(null);
     setEditContent("");
     setError("");
   };
-
-  
 
   const handleUpdate = async (postId) => {
     if (!editContent.trim()) {
@@ -281,7 +266,6 @@ const Posts = () => {
     }
   };
 
-
   const handleDelete = async (postId) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this post?"
@@ -327,8 +311,6 @@ const Posts = () => {
     }
   };
 
-  
-
   const handleLike = async (postId) => {
     try {
       const response = await api.post(
@@ -367,8 +349,6 @@ const Posts = () => {
     }
   };
 
-  
-
   const handleCommentChange = (
     postId,
     value
@@ -378,8 +358,6 @@ const Posts = () => {
       [postId]: value,
     }));
   };
-
-  
 
   const handleCreateComment = async (postId) => {
     const newComment =
@@ -428,8 +406,6 @@ const Posts = () => {
     }
   };
 
-  
-
   const handleDeleteComment = async (
     commentId,
     postId
@@ -470,8 +446,6 @@ const Posts = () => {
     }
   };
 
-  
-
   if (loading) {
     return (
       <main className="posts-page">
@@ -490,13 +464,9 @@ const Posts = () => {
     );
   }
 
-  
-
   return (
     <main className="posts-page">
       <div className="posts-container">
-
-        {/* TOP NAVIGATION */}
 
         <div className="posts-topbar">
           <Link
@@ -507,8 +477,6 @@ const Posts = () => {
           </Link>
         </div>
 
-        {/* PAGE HEADER */}
-
         <header className="posts-header">
           <h1 className="posts-title">
             Social Feed
@@ -518,8 +486,6 @@ const Posts = () => {
             Share something with your community ✨
           </p>
         </header>
-
-        {/* TOASTS */}
 
         {message && (
           <div className="toast-message">
@@ -532,8 +498,6 @@ const Posts = () => {
             {error}
           </div>
         )}
-
-        {/* CREATE POST */}
 
         <form
           onSubmit={handleCreatePost}
@@ -558,8 +522,6 @@ const Posts = () => {
             }
             rows="4"
           />
-
-          {/* IMAGE TOOLBAR */}
 
           <div className="create-post-toolbar">
             <div className="image-upload-wrapper">
@@ -604,8 +566,6 @@ const Posts = () => {
 
           </div>
 
-          {/* IMAGE PREVIEW */}
-
           {selectedImage && (
             <div className="image-preview-wrapper">
 
@@ -638,8 +598,6 @@ const Posts = () => {
           )}
 
         </form>
-
-        {/* POSTS */}
 
         {posts.length === 0 ? (
           <div className="empty-posts">
@@ -676,12 +634,8 @@ const Posts = () => {
                 likeCount: 0,
               };
 
-            
-
             const userName =
               post.user?.name?.trim() || "User";
-
-            
 
             const initials = userName
               .split(/\s+/)
@@ -692,14 +646,10 @@ const Posts = () => {
               .slice(0, 2)
               .join("");
 
-            
-
             const profilePhoto =
               post.user?.profilePhoto
                 ? `${BACKEND_URL}${post.user.profilePhoto}`
                 : null;
-
-            
 
             const postImage =
               post.image
@@ -711,8 +661,6 @@ const Posts = () => {
                 key={post._id}
                 className="post-card"
               >
-
-                {/* POST USER */}
 
                 <div className="post-user">
 
@@ -749,8 +697,6 @@ const Posts = () => {
                   )}
 
                 </div>
-
-                {/* EDIT MODE */}
 
                 {editingId === post._id ? (
                   <div className="edit-area">
@@ -808,15 +754,11 @@ const Posts = () => {
                   </div>
                 ) : (
                   <>
-                    {/* POST CONTENT */}
-
                     {post.content && (
                       <p className="post-content">
                         {post.content}
                       </p>
                     )}
-
-                    {/* POST IMAGE */}
 
                     {postImage && (
                       <div className="post-image-wrapper">
@@ -829,8 +771,6 @@ const Posts = () => {
 
                       </div>
                     )}
-
-                    {/* OWNER ACTIONS */}
 
                     {isOwner && (
                       <div className="post-actions">
@@ -863,8 +803,6 @@ const Posts = () => {
                   </>
                 )}
 
-                {/* POST DATE */}
-
                 <div className="post-meta">
                   {post.createdAt
                     ? new Date(
@@ -872,8 +810,6 @@ const Posts = () => {
                       ).toLocaleString()
                     : ""}
                 </div>
-
-                {/* LIKE SECTION */}
 
                 <div className="post-interaction-section">
 
@@ -907,8 +843,6 @@ const Posts = () => {
                   </div>
 
                 </div>
-
-                {/* COMMENTS */}
 
                 <section className="comments-section">
 
@@ -988,8 +922,6 @@ const Posts = () => {
                       No comments yet. Be the first!
                     </p>
                   )}
-
-                  {/* COMMENT FORM */}
 
                   <div className="comment-form">
 

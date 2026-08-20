@@ -12,6 +12,9 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const BACKEND_URL =
+    "https://social-media-platform-backend-oxp3.onrender.com";
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -67,7 +70,10 @@ const Users = () => {
       <main className="users-page">
         <div className="users-container">
           <div className="users-top-bar">
-            <Link to="/" className="users-home-button">
+            <Link
+              to="/"
+              className="users-home-button"
+            >
               ← Back to Home
             </Link>
           </div>
@@ -86,7 +92,10 @@ const Users = () => {
       <main className="users-page">
         <div className="users-container">
           <div className="users-top-bar">
-            <Link to="/" className="users-home-button">
+            <Link
+              to="/"
+              className="users-home-button"
+            >
               ← Back to Home
             </Link>
           </div>
@@ -105,13 +114,18 @@ const Users = () => {
       <div className="users-container">
 
         {/* BACK TO HOME */}
+
         <div className="users-top-bar">
-          <Link to="/" className="users-home-button">
+          <Link
+            to="/"
+            className="users-home-button"
+          >
             ← Back to Home
           </Link>
         </div>
 
         {/* HEADER */}
+
         <header className="users-header">
           <p className="users-label">
             COMMUNITY
@@ -125,6 +139,7 @@ const Users = () => {
         </header>
 
         {/* SEARCH */}
+
         {users.length > 0 && (
           <div className="users-search-wrapper">
             <input
@@ -150,9 +165,12 @@ const Users = () => {
         )}
 
         {/* NO USERS */}
+
         {users.length === 0 ? (
           <div className="users-status-card">
-            <div className="empty-icon">✦</div>
+            <div className="empty-icon">
+              ✦
+            </div>
 
             <h2>No other users yet</h2>
 
@@ -163,8 +181,11 @@ const Users = () => {
           </div>
         ) : filteredUsers.length === 0 ? (
           /* NO SEARCH RESULTS */
+
           <div className="users-status-card">
-            <div className="empty-icon">⌕</div>
+            <div className="empty-icon">
+              ⌕
+            </div>
 
             <h2>No users found</h2>
 
@@ -175,60 +196,78 @@ const Users = () => {
           </div>
         ) : (
           /* USERS */
+
           <div className="users-grid">
+
             {filteredUsers.map((person) => (
               <Link
                 key={person._id}
                 to={`/users/${person._id}`}
                 className="user-card"
               >
+
                 {/* AVATAR */}
+
                 <div className="user-card-avatar">
+
                   {person.profilePhoto ? (
                     <img
-                      src={`http://localhost:5000${person.profilePhoto}`}
+                      src={`${BACKEND_URL}${person.profilePhoto}`}
                       alt={person.name}
                     />
                   ) : (
                     <span>
                       {person.name
                         ?.charAt(0)
-                        ?.toUpperCase() || "U"}
+                        ?.toUpperCase() ||
+                        "U"}
                     </span>
                   )}
+
                 </div>
 
                 {/* USER INFO */}
+
                 <div className="user-card-info">
-                  <h3>{person.name}</h3>
+
+                  <h3>
+                    {person.name}
+                  </h3>
 
                   <p className="user-card-email">
                     {person.email}
                   </p>
 
                   <p className="user-card-bio">
-                    {person.bio || "No bio yet."}
+                    {person.bio ||
+                      "No bio yet."}
                   </p>
 
                   <span className="view-profile">
                     View Profile →
                   </span>
+
                 </div>
+
               </Link>
             ))}
+
           </div>
         )}
 
         {/* SEARCH COUNT */}
-        {users.length > 0 && search.trim() && (
-          <p className="search-result-count">
-            {filteredUsers.length}{" "}
-            {filteredUsers.length === 1
-              ? "person"
-              : "people"}{" "}
-            found
-          </p>
-        )}
+
+        {users.length > 0 &&
+          search.trim() && (
+            <p className="search-result-count">
+              {filteredUsers.length}{" "}
+              {filteredUsers.length === 1
+                ? "person"
+                : "people"}{" "}
+              found
+            </p>
+          )}
+
       </div>
     </main>
   );
