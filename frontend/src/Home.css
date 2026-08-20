@@ -1,0 +1,431 @@
+.home-page {
+  min-height: 100vh;
+  padding: 28px 20px 50px;
+  background: #F8F5F0;
+  box-sizing: border-box;
+}
+
+.home-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  padding: 18px 22px;
+
+  background: #FFFFFF;
+  border: 1px solid #E5DED5;
+  border-radius: 14px;
+
+  box-shadow:
+    0 4px 14px rgba(23, 23, 23, 0.04);
+}
+
+.home-logo {
+  color: #171717;
+  font-size: 22px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -0.4px;
+}
+
+.home-logo:hover {
+  color: #7A1F3D;
+}
+
+.home-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.home-nav-bar a {
+  color: #2B2B2B;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 650;
+  transition: color 0.2s ease;
+}
+
+.home-nav-bar a:hover {
+  color: #7A1F3D;
+}
+
+
+.notification-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 20px;
+  height: 20px;
+
+  margin-left: 6px;
+  padding: 0 5px;
+
+  box-sizing: border-box;
+
+  border-radius: 10px;
+
+  background: #7A1F3D;
+  color: #FFFFFF;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+
+.home-welcome-card {
+  margin-top: 30px;
+  padding: 55px 35px;
+
+  background: #FFFFFF;
+
+  border: 1px solid #E5DED5;
+  border-radius: 16px;
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 24px rgba(23, 23, 23, 0.05);
+}
+
+.home-label {
+  margin: 0 0 10px;
+
+  color: #7A1F3D;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.home-welcome-card h1,
+.home-auth-card h1 {
+  margin: 0;
+
+  color: #171717;
+
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.home-description {
+  max-width: 500px;
+  margin: 14px auto 28px;
+
+  color: #6F6A65;
+
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+
+
+.home-primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 18px;
+
+  border-radius: 9px;
+
+  background: #171717;
+  color: #FFFFFF;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.home-primary-link:hover {
+  background: #7A1F3D;
+  color: #FFFFFF;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 16px rgba(122, 31, 61, 0.18);
+}
+
+
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+
+  margin-top: 20px;
+}
+
+.home-feature-card {
+  min-height: 170px;
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  background: #FFFFFF;
+
+  border: 1px solid #E5DED5;
+  border-radius: 14px;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 4px 14px rgba(23, 23, 23, 0.04);
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.home-feature-card:hover {
+  border-color: #B89B5E;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(23, 23, 23, 0.08);
+}
+
+.feature-number {
+  color: #B89B5E;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.home-feature-card h3 {
+  margin: 22px 0 8px;
+
+  color: #171717;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.home-feature-card p {
+  margin: 0;
+
+  color: #6F6A65;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+
+
+.home-account-card {
+  margin-top: 20px;
+  padding: 24px;
+
+  background: #FFFFFF;
+
+  border: 1px solid #E5DED5;
+  border-radius: 14px;
+
+  box-shadow:
+    0 4px 14px rgba(23, 23, 23, 0.04);
+}
+
+.home-account-card h3 {
+  margin: 0 0 18px;
+
+  color: #171717;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.home-test-button {
+  background: #F8F5F0;
+  color: #2B2B2B;
+
+  border: 1px solid #D9D1C7;
+
+  font-weight: 700;
+
+  box-shadow: none;
+}
+
+.home-test-button:hover {
+  background: #7A1F3D;
+  border-color: #7A1F3D;
+  color: #FFFFFF;
+}
+
+.home-success {
+  margin-top: 14px;
+
+  color: #5F705D;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.home-error {
+  margin-top: 14px;
+
+  color: #7A1F3D;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.home-logout {
+  display: block;
+  width: 100%;
+
+  margin-top: 20px;
+
+  background: #171717;
+  color: #FFFFFF;
+
+  font-weight: 700;
+}
+
+.home-logout:hover {
+  background: #7A1F3D;
+}
+
+
+.home-footer {
+  padding: 25px 0 10px;
+
+  text-align: center;
+
+  color: #8F8982;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+
+.home-auth-card {
+  max-width: 600px;
+
+  margin: 80px auto 0;
+  padding: 55px 35px;
+
+  box-sizing: border-box;
+
+  background: #FFFFFF;
+
+  border: 1px solid #E5DED5;
+  border-radius: 16px;
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 24px rgba(23, 23, 23, 0.05);
+}
+
+.home-auth-card > p:not(.home-label) {
+  margin: 14px 0 28px;
+
+  color: #6F6A65;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.home-auth-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.home-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 18px;
+
+  border: 1px solid #D9D1C7;
+  border-radius: 9px;
+
+  background: #FFFFFF;
+  color: #171717;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.home-secondary-link:hover {
+  background: #7A1F3D;
+  border-color: #7A1F3D;
+  color: #FFFFFF;
+}
+
+
+
+@media (max-width: 700px) {
+  .home-page {
+    padding: 18px 12px 40px;
+  }
+
+  .home-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-logo {
+    text-align: center;
+  }
+
+  .home-nav-bar {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .home-welcome-card {
+    padding: 40px 20px;
+  }
+
+  .home-welcome-card h1,
+  .home-auth-card h1 {
+    font-size: 32px;
+  }
+
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-feature-card {
+    min-height: auto;
+  }
+
+  .home-auth-card {
+    margin-top: 40px;
+    padding: 40px 20px;
+  }
+}
