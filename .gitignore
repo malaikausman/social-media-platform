@@ -10,9 +10,6 @@ node_modules/
 dist/
 .vite/
 
-# Backend uploaded files
-uploads/
-
 # Logs
 npm-debug.log*
 yarn-debug.log*
