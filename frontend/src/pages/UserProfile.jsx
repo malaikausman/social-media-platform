@@ -21,9 +21,6 @@ const UserProfile = () => {
 
   const [showPhotoModal, setShowPhotoModal] = useState(false);
 
-  const BACKEND_URL =
-    "https://social-media-platform-backend-oxp3.onrender.com";
-
   useEffect(() => {
     const loadUser = async () => {
       try {
@@ -99,11 +96,17 @@ const UserProfile = () => {
     };
 
     if (showPhotoModal) {
-      document.addEventListener("keydown", handleEscape);
+      document.addEventListener(
+        "keydown",
+        handleEscape
+      );
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener(
+        "keydown",
+        handleEscape
+      );
     };
   }, [showPhotoModal]);
 
@@ -242,7 +245,7 @@ const UserProfile = () => {
             >
               {user.profilePhoto ? (
                 <img
-                  src={`${BACKEND_URL}${user.profilePhoto}`}
+                  src={user.profilePhoto}
                   alt={user.name}
                   className="profile-photo"
                 />
@@ -375,7 +378,7 @@ const UserProfile = () => {
 
             {user.profilePhoto ? (
               <img
-                src={`${BACKEND_URL}${user.profilePhoto}`}
+                src={user.profilePhoto}
                 alt={`${user.name}'s enlarged profile`}
                 className="user-profile-photo-modal-image"
               />
