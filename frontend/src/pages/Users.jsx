@@ -12,9 +12,6 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const BACKEND_URL =
-    "https://social-media-platform-backend-oxp3.onrender.com";
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -212,7 +209,7 @@ const Users = () => {
 
                   {person.profilePhoto ? (
                     <img
-                      src={`${BACKEND_URL}${person.profilePhoto}`}
+                      src={person.profilePhoto}
                       alt={person.name}
                     />
                   ) : (
