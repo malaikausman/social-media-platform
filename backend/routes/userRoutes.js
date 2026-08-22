@@ -2,7 +2,9 @@ const express = require("express");
 const protect = require("../middleware/authMiddleware");
 const admin = require("../middleware/adminMiddleware");
 const upload = require("../middleware/uploadMiddleware");
+const cloudinary = require("../config/cloudinary");
 const User = require("../models/User");
+
 const {
   getProfile,
   getUsers,
@@ -13,6 +15,7 @@ const {
   toggleFollow,
   getFollowStatus,
 } = require("../controllers/userController");
+
 const router = express.Router();
 
 router.get(
@@ -67,24 +70,31 @@ router.put(
         bio,
         profilePhoto,
       } = req.body;
+
       const user = await User.findById(
         req.user._id
       );
+
       if (!user) {
         return res.status(404).json({
           message: "User not found",
         });
       }
+
       if (name !== undefined) {
         user.name = name.trim();
       }
+
       if (bio !== undefined) {
         user.bio = bio.trim();
       }
+
       if (profilePhoto !== undefined) {
         user.profilePhoto = profilePhoto;
       }
+
       await user.save();
+
       res.status(200).json({
         message:
           "Profile updated successfully",
@@ -103,6 +113,7 @@ router.put(
         "Update profile error:",
         error
       );
+
       res.status(500).json({
         message: "Server error",
       });
@@ -121,17 +132,43 @@ router.post(
           message: "Please upload an image",
         });
       }
+
       const user = await User.findById(
         req.user._id
       );
+
       if (!user) {
         return res.status(404).json({
           message: "User not found",
         });
       }
+
+      const result = await new Promise(
+        (resolve, reject) => {
+          const uploadStream =
+            cloudinary.uploader.upload_stream(
+              {
+                folder:
+                  "social-media-platform/profile-photos",
+              },
+              (error, result) => {
+                if (error) {
+                  reject(error);
+                } else {
+                  resolve(result);
+                }
+              }
+            );
+
+          uploadStream.end(req.file.buffer);
+        }
+      );
+
       user.profilePhoto =
-        `/uploads/${req.file.filename}`;
+        result.secure_url;
+
       await user.save();
+
       res.status(200).json({
         message:
           "Profile photo uploaded successfully",
@@ -143,6 +180,7 @@ router.post(
         "Profile photo upload error:",
         error
       );
+
       res.status(500).json({
         message: "Server error",
       });
@@ -160,4 +198,5 @@ router.get(
     });
   }
 );
+
 module.exports = router;

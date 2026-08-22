@@ -28,9 +28,6 @@ const Profile = () => {
 
   const photoInputRef = useRef(null);
 
-  const BACKEND_URL =
-    "https://social-media-platform-backend-oxp3.onrender.com";
-
   useEffect(() => {
     if (!message && !error) return;
 
@@ -320,7 +317,7 @@ const Profile = () => {
             >
               {user.profilePhoto ? (
                 <img
-                  src={`${BACKEND_URL}${user.profilePhoto}`}
+                  src={user.profilePhoto}
                   alt={`${user.name}'s profile`}
                   className="profile-avatar"
                 />
@@ -548,7 +545,7 @@ const Profile = () => {
 
             {user.profilePhoto ? (
               <img
-                src={`${BACKEND_URL}${user.profilePhoto}`}
+                src={user.profilePhoto}
                 alt={`${user.name}'s enlarged profile`}
                 className="profile-photo-modal-image"
               />
