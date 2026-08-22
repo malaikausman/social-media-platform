@@ -4,26 +4,32 @@ const Follow = require("../models/Follow");
 const createPost = async (req, res) => {
   try {
     const { content } = req.body;
+
     if (!content || !content.trim()) {
       return res.status(400).json({
         message: "Post content is required",
       });
     }
+
     let image = "";
+
     if (req.file) {
-      image = `/uploads/${req.file.filename}`;
+      image = `https://social-media-platform-backend-oxp3.onrender.com/uploads/${req.file.filename}`;
     }
+
     const post = await Post.create({
       user: req.user._id,
       content: content.trim(),
       image,
     });
+
     const populatedPost = await Post.findById(
       post._id
     ).populate(
       "user",
       "name profilePhoto"
     );
+
     res.status(201).json({
       message: "Post created successfully",
       post: populatedPost,
@@ -44,6 +50,7 @@ const getPosts = async (req, res) => {
         "name profilePhoto"
       )
       .sort({ createdAt: -1 });
+
     res.status(200).json({
       posts,
     });
@@ -58,16 +65,17 @@ const getPosts = async (req, res) => {
 const getFeed = async (req, res) => {
   try {
     const currentUserId = req.user._id;
-    
+
     const follows = await Follow.find({
       follower: currentUserId,
     }).select("following");
+
     const followingIds = follows.map(
       (follow) => follow.following
     );
-    
+
     followingIds.push(currentUserId);
-    
+
     const posts = await Post.find({
       user: { $in: followingIds },
     })
@@ -76,6 +84,7 @@ const getFeed = async (req, res) => {
         "name profilePhoto"
       )
       .sort({ createdAt: -1 });
+
     res.status(200).json({
       posts,
     });
@@ -95,11 +104,13 @@ const getPostById = async (req, res) => {
       "user",
       "name profilePhoto"
     );
+
     if (!post) {
       return res.status(404).json({
         message: "Post not found",
       });
     }
+
     res.status(200).json({
       post,
     });
@@ -114,14 +125,17 @@ const getPostById = async (req, res) => {
 const updatePost = async (req, res) => {
   try {
     const { content } = req.body;
+
     const post = await Post.findById(
       req.params.id
     );
+
     if (!post) {
       return res.status(404).json({
         message: "Post not found",
       });
     }
+
     if (
       post.user.toString() !==
       req.user._id.toString()
@@ -131,6 +145,7 @@ const updatePost = async (req, res) => {
           "You can only edit your own posts",
       });
     }
+
     if (content !== undefined) {
       if (!content.trim()) {
         return res.status(400).json({
@@ -138,14 +153,18 @@ const updatePost = async (req, res) => {
             "Post content cannot be empty",
         });
       }
+
       post.content = content.trim();
     }
+
     await post.save();
+
     const updatedPost =
       await Post.findById(post._id).populate(
         "user",
         "name profilePhoto"
       );
+
     res.status(200).json({
       message: "Post updated successfully",
       post: updatedPost,
@@ -155,6 +174,7 @@ const updatePost = async (req, res) => {
       "Update post error:",
       error
     );
+
     res.status(500).json({
       message: "Server error",
     });
@@ -166,11 +186,13 @@ const deletePost = async (req, res) => {
     const post = await Post.findById(
       req.params.id
     );
+
     if (!post) {
       return res.status(404).json({
         message: "Post not found",
       });
     }
+
     if (
       post.user.toString() !==
       req.user._id.toString()
@@ -180,7 +202,9 @@ const deletePost = async (req, res) => {
           "You can only delete your own posts",
       });
     }
+
     await post.deleteOne();
+
     res.status(200).json({
       message: "Post deleted successfully",
     });
@@ -189,11 +213,13 @@ const deletePost = async (req, res) => {
       "Delete post error:",
       error
     );
+
     res.status(500).json({
       message: "Server error",
     });
   }
 };
+
 module.exports = {
   createPost,
   getPosts,
