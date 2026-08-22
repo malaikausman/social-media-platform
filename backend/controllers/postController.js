@@ -1,5 +1,6 @@
 const Post = require("../models/Post");
 const Follow = require("../models/Follow");
+const cloudinary = require("../config/cloudinary");
 
 const createPost = async (req, res) => {
   try {
@@ -14,7 +15,24 @@ const createPost = async (req, res) => {
     let image = "";
 
     if (req.file) {
-      image = `https://social-media-platform-backend-oxp3.onrender.com/uploads/${req.file.filename}`;
+      const result = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder: "social-media-platform/posts",
+          },
+          (error, result) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(result);
+            }
+          }
+        );
+
+        uploadStream.end(req.file.buffer);
+      });
+
+      image = result.secure_url;
     }
 
     const post = await Post.create({
