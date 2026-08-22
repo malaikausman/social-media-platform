@@ -27,6 +27,21 @@ const Posts = () => {
   const BACKEND_URL =
     "https://social-media-platform-backend-oxp3.onrender.com";
 
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return null;
+
+    if (
+      imagePath.startsWith("http://") ||
+      imagePath.startsWith("https://")
+    ) {
+      return imagePath;
+    }
+
+    return `${BACKEND_URL}${
+      imagePath.startsWith("/") ? "" : "/"
+    }${imagePath}`;
+  };
+
   const showMessage = (text) => {
     setMessage(text);
 
@@ -131,7 +146,9 @@ const Posts = () => {
     e.preventDefault();
 
     if (!content.trim() && !selectedImage) {
-      setError("Please write something or select an image.");
+      setError(
+        "Please write something or select an image."
+      );
       return;
     }
 
@@ -646,15 +663,13 @@ const Posts = () => {
               .slice(0, 2)
               .join("");
 
-            const profilePhoto =
+            const profilePhoto = getImageUrl(
               post.user?.profilePhoto
-                ? `${BACKEND_URL}${post.user.profilePhoto}`
-                : null;
+            );
 
-            const postImage =
+            const postImage = getImageUrl(
               post.image
-                ? `${BACKEND_URL}${post.image}`
-                : null;
+            );
 
             return (
               <article
