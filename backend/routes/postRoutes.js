@@ -1,6 +1,7 @@
 const express = require("express");
 const protect = require("../middleware/authMiddleware");
 const upload = require("../middleware/uploadMiddleware");
+
 const {
   createPost,
   getPosts,
@@ -9,6 +10,7 @@ const {
   updatePost,
   deletePost,
 } = require("../controllers/postController");
+
 const router = express.Router();
 
 router.get(
@@ -47,4 +49,5 @@ router.delete(
   protect,
   deletePost
 );
+
 module.exports = router;
